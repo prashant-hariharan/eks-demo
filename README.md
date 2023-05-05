@@ -87,7 +87,7 @@ eksctl create nodegroup --cluster=eksdemo1 \
                         --full-ecr-access \
                         --appmesh-access \
                         --alb-ingress-access \
-						--node-private-networking
+                        --node-private-networking
 ```
 
 **Output:**
