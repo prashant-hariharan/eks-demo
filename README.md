@@ -73,20 +73,21 @@ eksctl utils associate-iam-oidc-provider \
 # Create Public Node Group   
 eksctl create nodegroup --cluster=eksdemo1 \
                         --region=us-east-1 \
-                        --name=eksdemo1-ng-public1 \
+                        --name=eksdemo1-ng-private1 \
                         --node-type=t3.medium \
                         --nodes=2 \
                         --nodes-min=2 \
                         --nodes-max=4 \
                         --node-volume-size=20 \
                         --ssh-access \
-                        --ssh-public-key=kube-demo \
+                        --ssh-public-key=eks-mathema-keypair \
                         --managed \
                         --asg-access \
                         --external-dns-access \
                         --full-ecr-access \
                         --appmesh-access \
                         --alb-ingress-access 
+						--node-private-networking
 ```
 
 **Output:**
@@ -115,6 +116,8 @@ kubectl config view --minify
 ## Step-06: Install ALB Controller (OPTIONAL)
 
 **this step is to enable the kubernetes cluster to enable using ingress via Application load balancers**
+
+**Ingress is the most useful if you want to expose multiple services under the same IP address, and these services all use the same L7 protocol (typically HTTP). You only pay for one load balancer and you can get a lot of features out of the box (like SSL, Auth, Routing, etc)**
 
 
 - Download Latest IAM policy document
@@ -207,6 +210,9 @@ kubectl apply -f deployment.yaml
 kubectl apply -f loadbalancer-service.yaml
 
 ![Screenshot](AWS-EKS-NLB.jpeg)
+
+
+
 
 kubectl apply -f nodeport-service.yaml
 
