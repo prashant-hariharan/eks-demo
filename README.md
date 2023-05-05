@@ -64,7 +64,7 @@ eksctl utils associate-iam-oidc-provider \
 - This keypair we will use it when creating the EKS NodeGroup.
 - This will help us to login to the EKS Worker Nodes using Terminal (if public instances).
 
-## Step-04: Create Node Group with additional Add-Ons in Public Subnets
+## Step-04: Create Node Group with additional Add-Ons in Private Subnets
 - These add-ons will create the respective IAM policies for us automatically within our Node Group role.
 
 
