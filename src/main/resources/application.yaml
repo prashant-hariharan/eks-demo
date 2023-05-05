@@ -1,0 +1,68 @@
+server:
+  port: ${SERVICE_PORT:8080}
+  
+
+# Datasource configuration
+spring:
+  datasource:
+    url: jdbc:mysql://${SERVER_NAME}:3306/expenses
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        jdbc:
+          batch_size: 50
+        order_inserts: true
+        generate_statistics: false
+  
+
+# Actuator Management Endpoints Configuration
+management:
+  health:
+    mail:
+      enabled: false
+    elasticsearch:
+      enabled: false  
+  endpoints:
+    web:
+      exposure:
+        include: 'health,info,metrics'
+
+  # Show full health details
+  endpoint:
+    health:
+      show-details: always
+
+# Proactively disable check against configuration server by Actuator framework
+# to prevent system crash if configuration server is not available
+health:
+  config:
+    enabled: true
+    
+
+logging:
+  file: logs/application.log
+  level:
+    com.mathema: INFO
+    org:
+      springframework:
+        web: INFO
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
+              
+      hibernate: INFO
+
+
+
+
