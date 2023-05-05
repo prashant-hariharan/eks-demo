@@ -113,6 +113,10 @@ kubectl config view --minify
 ```
 
 ## Step-06: Install ALB Controller (OPTIONAL)
+
+**this step is to enable the kubernetes cluster to enable using ingress via Application load balancers**
+
+
 - Download Latest IAM policy document
 curl -oiam_policy_latest.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
 
